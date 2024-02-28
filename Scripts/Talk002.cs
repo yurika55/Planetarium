@@ -1,3 +1,4 @@
+//会話シーンのコード(Place1というシーンで使用)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,15 @@ using TMPro;
 
 public class Talk002 : MonoBehaviour
 {
-    [SerializeField] [Header("トーク")] private string[] msgContent1;
-    public float waittimer = 0.5f;
+    [SerializeField] [Header("トーク")] private string[] msgContent1;//会話シーン
+    public float waittimer = 0.5f;//1文字に対する時間
     GameObject objCanvas = null;
     public Animator animator;
  
     //スイッチの状態を保持する変数
-    private bool cafefind = false;
+    private bool cafefind = false;//矢印１の表示のON/OFF
     public int cafefindnum = 0;
-    private bool campfind = false;
+    private bool campfind = false;//矢印２の表示のON/OFF
     public int campfindnum = 0;
 
     void Start()
@@ -34,7 +35,7 @@ public class Talk002 : MonoBehaviour
         //数秒待つ
         yield return new WaitForSeconds(3.0f);
 
-        //会話
+        //会話シーン
         for (int i = msgContent1.GetLowerBound(0); i <= msgContent1.GetUpperBound(0); i++)
         {
             TextMeshProUGUI textMeshComponent = objContent.GetComponent<TextMeshProUGUI>();
@@ -46,7 +47,7 @@ public class Talk002 : MonoBehaviour
             GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(waittime(characterCount));
 
-            //arrowを表示させる
+            //矢印１・２を表示させる
             if(i == cafefindnum)
             {
                 SetCafeFind(true);
@@ -65,7 +66,7 @@ public class Talk002 : MonoBehaviour
         } 
 
         objCanvas.SetActive(false);
-        //yield return new WaitForSeconds(30.0f);
+        
         if (animator != null)
         {
             animator.SetBool("Hide", true);

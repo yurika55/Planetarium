@@ -1,3 +1,4 @@
+//会話シーンのコード(Place6というシーンで使用)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,8 @@ using TMPro;
 
 public class Talk007 : MonoBehaviour
 {
-    [SerializeField] [Header("トーク")] private string[] msgContent1;
-    public float waittimer = 0.5f;
+    [SerializeField] [Header("トーク")] private string[] msgContent1;// 会話シーン１
+    public float waittimer = 0.5f;//1文字に対する時間
     GameObject objCanvas = null;
     public Animator animator;
  
@@ -66,7 +67,7 @@ public class Talk007 : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Animator not assigned in Talk002 script.");
+            Debug.LogWarning("Animator not assigned in Talk007 script.");
         }
         
     }

@@ -1,3 +1,4 @@
+//会話シーンのコード(Place5というシーンで使用)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,9 @@ using TMPro;
 
 public class Talk006 : MonoBehaviour
 {
-    [SerializeField] [Header("トーク1")] private string[] msgContent1;
-    [SerializeField] [Header("トーク2")] private string[] msgContent2;
-    public float waittimer = 0.5f;
+    [SerializeField] [Header("トーク1")] private string[] msgContent1;//会話シーン１
+    [SerializeField] [Header("トーク2")] private string[] msgContent2;//会話シーン２
+    public float waittimer = 0.5f;//1文字に対する時間
     GameObject objCanvas = null;
     public Animator animator;
     public float ImgIndicateTime = 6.0f;
@@ -34,7 +35,7 @@ public class Talk006 : MonoBehaviour
         //数秒待つ
         yield return new WaitForSeconds(3.0f);
 
-        //会話
+        //会話シーン１
         for (int i = msgContent1.GetLowerBound(0); i <= msgContent1.GetUpperBound(0); i++)
         {
             TextMeshProUGUI textMeshComponent = objContent.GetComponent<TextMeshProUGUI>();
@@ -46,7 +47,7 @@ public class Talk006 : MonoBehaviour
             GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(waittime(characterCount));
 
-            //imgを表示させる
+            //画像を表示させる
             if(i == imgfindnum)
             {
                 SetImgFind(true);
@@ -61,7 +62,7 @@ public class Talk006 : MonoBehaviour
 
         yield return new WaitForSeconds(ImgIndicateTime);
 
-
+        //会話シーン２
         for (int i = msgContent2.GetLowerBound(0); i <= msgContent2.GetUpperBound(0); i++)
         {
             TextMeshProUGUI textMeshComponent = objContent.GetComponent<TextMeshProUGUI>();
@@ -84,7 +85,7 @@ public class Talk006 : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Animator not assigned in Talk002 script.");
+            Debug.LogWarning("Animator not assigned in Talk006 script.");
         }
         
     }
@@ -97,7 +98,7 @@ public class Talk006 : MonoBehaviour
         return mojitime;
     }
 
-    //ImgのON/OFF
+    //画像のON/OFF
     public void SetImgFind(bool status)
     {
         imgfind = status;

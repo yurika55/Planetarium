@@ -1,3 +1,4 @@
+//画像を一枚一枚表示
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

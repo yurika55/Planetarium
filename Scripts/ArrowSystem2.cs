@@ -1,3 +1,4 @@
+//place3の矢印を表示
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

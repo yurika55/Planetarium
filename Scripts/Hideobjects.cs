@@ -1,20 +1,16 @@
+//アニメーションのHideがONになるとオブジェクトが非表示になるコード
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Hideobjects : MonoBehaviour
 {
+    //animationを入れる箱
     public Animator dogani;
-
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
-        // "Dog" ゲームオブジェクトが見つかっており、Animator コンポーネントがアタッチされている場合
+        // "Dogani" ゲームオブジェクトが見つかっており、Animator コンポーネントがアタッチされている場合
         if (dogani != null)
         {
             // "Hide" パラメーターが true になったらオブジェクトを非アクティブにする
@@ -26,6 +22,7 @@ public class Hideobjects : MonoBehaviour
         
     }
 
+//オブジェクトを非表示にする関数
     public void Hide()
     {
         gameObject.SetActive(false);

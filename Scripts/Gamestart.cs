@@ -1,3 +1,4 @@
+//ゲームスタート画面のボタンのシーンの切り替えコード
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,4 @@
+//会話後のシーンの切り替えコード
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,9 @@ public class Scenechange : MonoBehaviour
     //何秒後にシーンを切り替えるか
     public float delay = 10.0f;
     public Animator dogani;
-    public int SceneIndex;
+    public int SceneIndex;//シーンの配列の番号を入れる
     private bool isChangingScene = false; // シーン切り替えフラグ
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -29,6 +25,7 @@ public class Scenechange : MonoBehaviour
         }
     }
 
+// シーン切り替え関数
     void change()
     {
         SceneManager.LoadScene(SceneIndex);

@@ -1,3 +1,4 @@
+//会話シーンのコード(Place0というシーンで使用)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,13 @@ using TMPro;
 
 public class Talk001 : MonoBehaviour
 {
-    //[SerializeField] [Header("メッセージ（キャラ名）")] private string[] msgCaraName;
+    //寝ているシーン
     [SerializeField] [Header("眠ってる")] private string[] msgContent1;
+    //会話シーン
     [SerializeField] [Header("メッセージ（内容）")] private string[] msgContent2;
+    //寝ているシーンの要素の待ち時間
     public float delay = 1.0f;
+    //1文字に対する時間
     public float waittimer = 0.5f;
     GameObject objCanvas = null;
     public Animator animator;
@@ -21,35 +25,30 @@ public class Talk001 : MonoBehaviour
         StartCoroutine(ShowLog());
     }
  
-    void Update()
-    {
-        
-    }
  
     IEnumerator ShowLog()
     {
-        //GameObject objCaraName = objCanvas.transform.Find("CaraName").gameObject;
         GameObject objContent = objCanvas.transform.Find("Content").gameObject;
  
         objCanvas.SetActive(true);
- 
+
+        //寝ているシーン
         for (int i = msgContent1.GetLowerBound(0); i <= msgContent1.GetUpperBound(0); i++)
         {
-            //objCaraName.GetComponent<Text>().text = msgCaraName[i];
-            //objContent.GetComponent<Text>().text = msgContent[i];
+            
             TextMeshProUGUI textMeshComponent = objContent.GetComponent<TextMeshProUGUI>();
             textMeshComponent.text = msgContent1[i];
  
-            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             yield return new WaitForSeconds(delay);
 
             yield return null;
         }
 
+        //寝ているシーンと会話シーンの待ち時間
         animator.SetTrigger("wakeup");
         yield return new WaitForSeconds(4.5f);
 
-        
+        //会話シーン
         for (int i = msgContent2.GetLowerBound(0); i <= msgContent2.GetUpperBound(0); i++)
         {
             TextMeshProUGUI textMeshComponent = objContent.GetComponent<TextMeshProUGUI>();
@@ -58,8 +57,9 @@ public class Talk001 : MonoBehaviour
             int characterCount = str.Length;
             Debug.Log($"Length of {str}: {characterCount}");
  
+            //会話終わりにSEを再生
             GetComponent<AudioSource>().Play();
-            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            //waittime関数による次の文章までの待ち時間
             yield return new WaitForSeconds(waittime(characterCount));
             yield return null;
         } 
